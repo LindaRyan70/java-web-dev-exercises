@@ -1,4 +1,4 @@
-package exercises;
+package exercises.chapters1and2;
 
 // Exercise #4 Part 1: Create a String of textbook-provided sentence and use Scanner to get user input for a term to search for in that string..
 
