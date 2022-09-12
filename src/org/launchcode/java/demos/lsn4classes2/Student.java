@@ -28,22 +28,106 @@ public class Student {
         return (this.name + " has a GPA of: " + this.gpa);
     }
 
+    /* Version 1 of getGradeLevel() method with no parameters, such that it merely prints level based
+    on current this.numberOfCredits. */
+//TODO: Uncomment and complete the getGradeLevel method here:
 
-     //TODO: Uncomment and complete the getGradeLevel method here:
 //    public String getGradeLevel() {
 //        // Determine the grade level of the student based on numberOfCredits
+//
+//        if (numberOfCredits <= 29){
+//            return "Freshman";
+//        } else if (numberOfCredits <= 59){
+//            return "Sophomore";
+//        } else if (numberOfCredits <= 89) {
+//            return "Junior";
+//        } else {
+//            return "Senior";
+//        }
 //    }
+
+    /* Version 2 of getGradeLevel() method with (int credits) to allow for updating level based on total credits added. */
+//TODO: Uncomment and complete the getGradeLevel method here:
+
+//public String getGradeLevel(int credits) {
+//    // Determine the grade level of the student based on numberOfCredits
+//
+//    if (numberOfCredits + credits <= 29){
+//        return "Freshman";
+//    } else if (numberOfCredits + credits <= 59){
+//        return "Sophomore";
+//    } else if (numberOfCredits + credits <= 89) {
+//        return "Junior";
+//    } else {
+//        return "Senior";
+//    }
+//}
+
+
+/* Textbook Solution - Version 3 of getGradeLevel() method with (int credits) to print level based on credits passed in. */
+//TODO: Uncomment and complete the getGradeLevel method here:
+
+public String getGradeLevel(int credits) {
+    // Determine the grade level of the student based on numberOfCredits
+
+    if (credits <= 29){
+        return "Freshman";
+    } else if (credits <= 59){
+        return "Sophomore";
+    } else if (credits <= 89) {
+        return "Junior";
+    } else {
+        return "Senior";
+    }
+}
+
 
     // TODO: Complete the addGrade method.
     public void addGrade(int courseCredits, double grade) {
         // Update the appropriate fields: numberOfCredits, gpa
+
+       double totalQualityScore = this.gpa * this.numberOfCredits;
+       totalQualityScore += grade * courseCredits;
+//     Long version of line below: this.numberOfCredits = this.numberOfCredits + courseCredits;
+       this.numberOfCredits += courseCredits;
+       this.gpa = totalQualityScore / this.numberOfCredits;
+
     }
 
     // TODO: Add your custom 'toString' method here. Make sure it returns a well-formatted String rather
     //  than just the class fields.
 
+    @Override // This is an added annotation to let you know that this is an override of a default/built-in/existing method.
+    public String toString() {
+//    This line below is what the textbook solution was based on using the getGradeLevel version 3 (or version 2) passing this.numberOfCredits as an int arg.
+        String studentReport = String.format("%s is a %s with %d credits and a %.2f GPA.", this.name, this.getGradeLevel(this.numberOfCredits), this.getNumberOfCredits(), this.getGpa());
+//      This line below is what Jayde did w/o putting numberOfCredits as an arg inside of getGradeLevel(int)
+//      String studentReport = String.format("%s is a %s with %d credits and a %.2f GPA.", this.name, this.getGradeLevel(), this.numberOfCredits, this.getNumberOfCredits(), this.getGpa());
+        return studentReport;
+    }
+
+
     // TODO: Add your custom 'equals' method here. Consider which fields should match in order to call two
     //  Student objects equal.
+
+    @Override // This is an added annotation to let you know that this is an override of a default/built-in/existing method.
+    public boolean equals(Object toBeCompared) {
+        if (toBeCompared == this) {
+            return true;
+        }
+
+        if (toBeCompared == null) {
+            return false;
+        }
+
+        if (toBeCompared.getClass() != getClass()) {
+            return false;
+        }
+
+        Student theStudent = (Student) toBeCompared;
+
+        return theStudent.getStudentId() == this.getStudentId();
+    }
 
     public String getName() {
         return name;
