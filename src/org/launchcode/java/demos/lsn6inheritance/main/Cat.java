@@ -1,6 +1,6 @@
-package org.launchcode.java.demos.lsn6inheritance;
+package org.launchcode.java.demos.lsn6inheritance.main;
 
-public class Cat {
+public abstract class Cat {  //  Adding "abstract" prevents any creation of a Cat class instance object!
 
     private boolean tired = false;
     private boolean hungry = false;
@@ -12,6 +12,13 @@ public class Cat {
     public Cat (double aWeight) {
         weight = aWeight;
     }
+
+
+//    Sample no-argument constructor per book example 7.3.2
+    public Cat () {
+        weight = 13;
+    }
+
 
     /**** Getters and Setters ****/
 
@@ -65,4 +72,10 @@ public class Cat {
     public String noise () {
         return "Meeeeeeooooowww!";
     }
-}
+
+/* Sample code to demo creating an abstract method w/in an abstract class. Turned off b/c causes issues with demo
+    code for using super to call a method in a base class. */
+//
+//    public abstract String noise ();   //  This requires the subclass to implement its own version of this method!
+
+    }
